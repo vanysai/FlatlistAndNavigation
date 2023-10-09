@@ -1,0 +1,1 @@
+{"ast":null,"code":"im;\nexport {};","map":{"version":3,"names":["im"],"sources":["C:/Users/jaiza_freire/Documents/ProjetosSENAI/UseEffect/UseEffect/App.tsx"],"sourcesContent":["import React from 'react';\nimport {NavigationContainer} from '@react-navigation/native';\nim"],"mappings":"AAEAA,EAAE;AAAA"},"metadata":{},"sourceType":"module","externalDependencies":[]}
