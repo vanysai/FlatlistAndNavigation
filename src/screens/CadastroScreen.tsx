@@ -1,78 +1,86 @@
 import React from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { useState } from 'react';
+import { useNavigation } from "@react-navigation/native";
 
-export function Cadastro({ navigation }) {
-  const [nome, setNome] = React.useState('');
-  const [cpf, setCpf] = React.useState('');
-  const [dataNasc, setDataNasc] = React.useState('');
-  const [endereco, setEndereco] = React.useState('');
-  const [idade, setIdade] = React.useState('');
-  const [pagamento, setPagamento] = React.useState('');
-  const [valor, setValor] = React.useState('');
 
-  const handleCadastro = () => {
+export function Cadastro(){
 
-    console.log('Nome:', nome);
-    console.log('CPF:', cpf);
-    console.log('Data de Nascimento:', dataNasc);
-    console.log('Endereço:', endereco);
-    console.log('Idade:', idade);
-    console.log('Pagamento:', pagamento);
-    console.log('Valor:', valor);
-  };
+  const navigation = useNavigation();
+
+
+  const [isVisible, setIsVisible] = useState(false);
+
+  const [tecnico, setTecnico] = useState({
+    nome: '',
+    idade: '',
+    nacionalidade: '',
+    experiencia: '',
+  });
+
+  function handleInputChange(field, value) {
+    setTecnico({
+      ...tecnico,
+      [field]: value,
+    });
+  }
+
+  function Cadastro() {
+    console.log(tecnico);
+    setIsVisible(true)
+  }
+
+  function ListaNomes() {
+    console.log(tecnico);
+    navigation.navigate('list')
+  }
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Cadastro</Text>
-
+      <Text style={styles.text}>Preencha os dados do Técnico</Text>
+      <br>
+      </br>
+      <Text style={styles.textInput}>Nome</Text>
       <TextInput
         style={styles.input}
-        value={nome}
-        onChangeText={setNome}
-        placeholder="Nome completo"
-      />
-      <TextInput
-        style={styles.input}
-        value={cpf}
-        onChangeText={setCpf}
-        placeholder="CPF"
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={styles.input}
-        value={dataNasc}
-        onChangeText={setDataNasc}
-        placeholder="Data de Nascimento"
-      />
-      <TextInput
-        style={styles.input}
-        value={endereco}
-        onChangeText={setEndereco}
-        placeholder="Endereço"
-      />
-      <TextInput
-        style={styles.input}
-        value={idade}
-        onChangeText={setIdade}
-        placeholder="Idade"
-        keyboardType="numeric"
-      />
-      <TextInput
-        style={styles.input}
-        value={pagamento}
-        onChangeText={setPagamento}
-        placeholder="Forma de Pagamento"
-      />
-      <TextInput
-        style={styles.input}
-        value={valor}
-        onChangeText={setValor}
-        placeholder="Valor"
-        keyboardType="numeric"
+        value={tecnico.nome}
+        onChangeText={(text) => handleInputChange('nome', text)}
       />
 
-      <TouchableOpacity style={styles.button} onPress={handleCadastro}>
-        <Text style={styles.buttonText}>Cadastrar</Text>
+      <Text style={styles.textInput}>Idade</Text>
+      <TextInput
+        style={styles.input}
+        value={tecnico.idade}
+        onChangeText={(text) => handleInputChange('idade', text)}
+      />
+
+      <Text style={styles.textInput}>Nacionalidade</Text>
+      <TextInput
+        style={styles.input}
+        value={tecnico.nacionalidade}
+        onChangeText={(text) => handleInputChange('nacionalidade', text)}
+      />
+
+      <Text style={styles.textInput}>Experiência em anos</Text>
+      <TextInput
+        style={styles.input}
+        value={tecnico.experiencia}
+        onChangeText={(text) => handleInputChange('experiencia', text)}
+      />
+
+{isVisible && (
+<View style={styles.lista}>
+<Text style={styles.inputValue}>Nome: {tecnico.nome}</Text>
+<Text style={styles.inputValue}>Idade: {tecnico.idade}</Text>
+<Text style={styles.inputValue}>Nacionalidade: {tecnico.nacionalidade}</Text>
+<Text style={styles.inputValue}>Experiência em anos: {tecnico.experiencia}</Text>
+</View>)}
+
+    <TouchableOpacity style={styles.btn} onPress={Cadastro}>
+        <Text style={styles.button}>Cadastrar</Text>
+      </TouchableOpacity>
+      <TouchableOpacity style={styles.btn}  onPress={() => navigation.navigate('ListaNomes')}>
+        <Text style={styles.button}>Ver Lista</Text>
       </TouchableOpacity>
     </View>
   );
@@ -85,6 +93,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  text: {
+    fontWeight: 'bold',
+  },
   title: {
     fontSize: 24,
     fontWeight: 'bold',
@@ -96,20 +107,29 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     borderRadius: 10,
     borderWidth: 2,
-    borderColor: 'pink',
+    borderColor: 'white',
     fontWeight: '450',
     backgroundColor: '#f1e8dc',
     paddingHorizontal: 10,
+  },
+  inputValue:{
+    fontSize: 14,
+    width: '60%',
+    color: 'black',
+    marginBottom: 20,
+    marginTop: 20
   },
   button: {
     width: 150,
     height: 50,
     display: 'flex',
+    fontWeight: 'bold',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'pink',
+    backgroundColor: 'red',
     borderRadius: 20,
     marginTop: 20,
+    color: 'white'
   },
   buttonText: {
     fontWeight: 'bold',

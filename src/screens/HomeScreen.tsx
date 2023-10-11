@@ -1,11 +1,12 @@
 // HomeScreen.js
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 const HomeScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Bem vindo a Home</Text>
+      <Image source={require('../assets/corinthiaaans.png')} style={styles.imagem}/>
+      <Text style={styles.title}>Listagem de Jogadores</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => navigation.navigate('ListaNomes')}
@@ -40,7 +41,7 @@ const styles = StyleSheet.create({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: 'pink',
+    backgroundColor: 'red',
     borderRadius: 20,
     marginTop: 20,
   },
@@ -48,28 +49,13 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: 'white',
   },
+  imagem:{
+    width:1000,
+    height:180,
+    resizeMode:"contain",
+    marginBottom:100
+  }
+
 });
 
 export default HomeScreen;
-
-
-// import React from 'react';
-// import { View, Text, FlatList } from 'react-native';
-// import { styles } from '../assets/styles';
-// import { nomes } from '../constants/nomes';
-// import NomeItem from '../components/NomeItem';
-
-// const HomeScreen: React.FC = () => {
-//     return (
-//         <View style={styles.container}>
-//             <Text style={styles.header}>Lista de Nomes</Text>
-//             <FlatList
-//                 data={nomes}
-//                 keyExtractor={(item, index) => index.toString()}
-//                 renderItem={({item}) => <NomeItem nome={item} />}
-//                 />
-//         </View>
-//     );
-// };
-
-// export default HomeScreen;
