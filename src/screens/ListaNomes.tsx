@@ -65,14 +65,14 @@ const ListaNomesScreen = () => {
 
   const renderItem = ({ item }) => (
     <View>
-    <Text style={styles.text}>{item.name}</Text>
-    <Text style={styles.text}>{item.position}</Text>
-    <Text style={styles.text}>{item.age}</Text>
+    <Text style={styles.nome}>{item.name}</Text>
+    <Text style={styles.text}> Posição: {item.position}</Text>
+    <Text style={styles.text}> Idade: {item.age}</Text>
     </View>
   ) 
   return(
     <View style={styles.container}>
-       <Text style={styles.title}>Lista de jogadores</Text>
+      <Text style={styles.title}>Lista de jogadores</Text>
       <FlatList 
       style={styles.list}
       data={footballPlayers}
@@ -96,19 +96,24 @@ const styles = StyleSheet.create({
       marginTop: 0.3,
     },
     text:{
-      color: "white",
+      color: "black",
       fontSize: 15,
       width: 190,
       padding: 9,
-      backgroundColor: "red",
+      backgroundColor: "#f7eee9",
       borderRadius: 5,
       marginBottom: 10,
       textAlign: 'center'
     },
+    nome: {
+      backgroundColor: 'white',
+      textAlign: 'center',
+      fontWeight: 'bold'
+    },
     title:{
       fontWeight:"bold",
-      marginTop: "10%",
-      marginBottom: "10%",
+      marginTop: "5%",
+      marginBottom: "5%",
       fontSize: 20,
       color: "black"
     },
